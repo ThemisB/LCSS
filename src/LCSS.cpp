@@ -92,7 +92,7 @@ Php::Value LCSS::findSimilarity(Php::Parameters &params) {
 		}
 	}
 
-	std::vector<int> lcss_vector;
+	vector<int> lcss_vector;
 	int x = n,y = m;
 
 	while (x != 0 && y !=0) {

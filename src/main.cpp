@@ -13,7 +13,6 @@ extern "C" {
 			Php::ByRef("trajectory2Lat", Php::Type::Array, true),
 			Php::ByRef("trajectory2Lng", Php::Type::Array, true)
 		});
-		// lcss.method('findSimilarity', &LCSS::findSimilarity);
 		extension.add(move(lcss));
 		return extension;
 	}
