@@ -5,7 +5,7 @@ get better performance compared with a pure PHP implementation.
 
 ## Installation (Ubuntu or OS)
 
-You can simply type `make everything` or `` and the extension will be installed. 
+You can simply type `make everything` and the extension will be installed. 
 
 However if any errors occur, you can do the following : 
 
