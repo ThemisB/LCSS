@@ -3,10 +3,15 @@
 This is a simple implementation of the [LCSS Algorithm](http://www.cs.bu.edu/groups/dblab/pub_pdfs/icde02.pdf), written in [php-cpp](php-cpp.com), in order to 
 get better performance compared with a pure PHP implementation.
 
-## Installation
+## Installation (Ubuntu or OS)
 
-1. Edit Makefile and set `INI_DIR` to the directory that holds your `.ini` files.
-2. `make && sudo make install`
+You can simply type `make everything` or `` and the extension will be installed. 
+
+However if any errors occur, you can do the following : 
+
+1. Edit the Makefile and set `INI_DIR` to the directory that holds your additional `.ini` files.
+2. `make everything`
+
 
 ## Usage (PHP side)
 
