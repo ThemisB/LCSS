@@ -28,3 +28,8 @@ trajectory.
 double LCSS::findSimilarity( array trajectory1Lat, array trajectory1Lng, array trajectory2Lat, array trajectory2Lng )
 ```
 * Currently Similarity Measures/ Similarity Function 1 is used.
+
+## Determining the values for `epsilon` and `delta`
+
+The authors of the paper, suggest to find the minimal standard derivation between the two trajectories and use it as `epsilon`, 
+while `delta` should be around 20%-30% of trajectories length.
