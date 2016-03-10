@@ -22,6 +22,4 @@ public:
 	Php::Value findSimilarity(Php::Parameters &);
 };
 
-// Php::Value lcss_similarity(Php::Parameters &);
-
 #endif

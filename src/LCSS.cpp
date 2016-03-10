@@ -97,13 +97,6 @@ Php::Value LCSS::findSimilarity(Php::Parameters &params) {
 }
 
 int LCSS::distance(double x1, double x2, double y1, double y2) {
-
 	return ( sqrt ( (x1 - x2) * ( x1 - x2 ) + (y1 - y2) * (y1 - y2) ) < _epsilon );
-
-	// if (x > y)
-	// 	return 1;
-	// else if (x < y)
-	// 	return -1;
-	// return 0;
 }
 
