@@ -13,7 +13,8 @@ class LCSS : public Php::Base{
 private:
 	double _epsilon;
  	double _delta;
-	int compareCoordinates(double, double);
+ 	bool _decideDelta;
+	int distance(double, double, double, double);
 public:
 	LCSS();
 	virtual ~LCSS();

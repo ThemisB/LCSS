@@ -1,4 +1,5 @@
 #include "LCSS.h"
+#include <math.h>
 
 using namespace std;
 
@@ -48,39 +49,22 @@ Php::Value LCSS::findSimilarity(Php::Parameters &params) {
 
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
-			double lat1,lat2,lng1,lng2;
-			lat1 = trajectory1Lat[i];
-			lat2 = trajectory2Lat[j];
 
-			int retval = compareCoordinates(lat1, lat2);
-			bool equalsLatitude = true;
-			if (retval == 1) {
-				equalsLatitude = compareCoordinates(lat1, lat2 + _epsilon) <= 0;
-			} else if (retval == -1) {
-				equalsLatitude = compareCoordinates(lat2, lat1 + _epsilon) <= 0;
-			}
-
-			if (!equalsLatitude) {
+			if (abs(i-j) > _delta) {
 				if (lengths[i+1][j] > lengths[i][j+1]) {
 					lengths[i+1][j+1] = lengths[i+1][j];
 				} else {
 					lengths[i+1][j+1] = lengths[i][j+1];
 				}
 				continue;
-			}
+			} 
 
+			double lat1,lat2,lng1,lng2;
+			lat1 = trajectory1Lat[i];
+			lat2 = trajectory2Lat[j];
 			lng1 = trajectory1Lng[i];
 			lng2 = trajectory2Lng[j];
-
-			retval = compareCoordinates(lng1, lng2);
-			bool equalsLongitude = true;
-			if (retval == 1) {
-				equalsLongitude = compareCoordinates(lng1, lng2 + _epsilon) <= 0;
-			} else if (retval == -1) {
-				equalsLongitude = compareCoordinates(lng2, lng1 + _epsilon) <= 0;
-			}
-
-			if ((equalsLongitude && _delta == 0) || (equalsLongitude && abs(n-i-(m-j)) <= _delta)){
+			if (distance(lat1,lat2,lng1,lng2)) {
 				lengths[i+1][j+1] = lengths[i][j] + 1;
 			} else {
 				if (lengths[i+1][j] > lengths[i][j+1]) {
@@ -93,7 +77,7 @@ Php::Value LCSS::findSimilarity(Php::Parameters &params) {
 	}
 
 	vector<int> lcss_vector;
-	int x = n,y = m;
+	int x = n, y = m;
 
 	while (x != 0 && y !=0) {
 		if (lengths[x][y] == lengths[x-1][y]) {
@@ -112,11 +96,14 @@ Php::Value LCSS::findSimilarity(Php::Parameters &params) {
 	return 0;
 }
 
-int LCSS::compareCoordinates(double x, double y) {
-	if (x > y)
-		return 1;
-	else if (x < y)
-		return -1;
-	return 0;
+int LCSS::distance(double x1, double x2, double y1, double y2) {
+
+	return ( sqrt ( (x1 - x2) * ( x1 - x2 ) + (y1 - y2) * (y1 - y2) ) < _epsilon );
+
+	// if (x > y)
+	// 	return 1;
+	// else if (x < y)
+	// 	return -1;
+	// return 0;
 }
 
