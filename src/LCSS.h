@@ -14,7 +14,7 @@ private:
 	double _epsilon;
  	double _delta;
  	bool _decideDelta;
-	int distance(double, double, double, double);
+	double distance(double, double, double, double);
 public:
 	LCSS();
 	virtual ~LCSS();

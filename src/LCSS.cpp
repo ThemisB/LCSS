@@ -96,7 +96,16 @@ Php::Value LCSS::findSimilarity(Php::Parameters &params) {
 	return 0;
 }
 
-int LCSS::distance(double x1, double x2, double y1, double y2) {
-	return ( sqrt ( (x1 - x2) * ( x1 - x2 ) + (y1 - y2) * (y1 - y2) ) < _epsilon );
+double LCSS::distance(double x1, double x2, double y1, double y2) {
+	double R = 6371.0; // km
+	double dLat = (x2-x1)*((double)(M_PI/180.0));
+	double dLon = (y1-y2)*((double)(M_PI/180.0));
+	double a = sin((double)(dLat/2)) * sin((double)(dLat/2)) +
+	       cos(x1*((double)(M_PI/180.0))) * cos(x2*((double)(M_PI/180.0))) *
+	       sin((double)(dLon/2)) * sin((double)(dLon/2));
+	double c = 2 * atan2(sqrt(a), sqrt(1-a));
+	return R * c < _epsilon;
+
+	// return ( sqrt ( (x1 - x2) * ( x1 - x2 ) + (y1 - y2) * (y1 - y2) ) < _epsilon );
 }
 
